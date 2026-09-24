@@ -46,9 +46,7 @@ public class AlquilerService {
 
     public Alquiler buscarPorId(Integer id){
         return alquilerRepository.findById(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Alquiler no encontrado") {
-                });
-
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Alquiler no encontrado"));
     }
 
     public Alquiler actualizarAlquiler(Integer id, Alquiler data){
@@ -61,8 +59,16 @@ public class AlquilerService {
         return alquilerRepository.save(alquiler);
     }
 
-    public Alquiler finalizarAlquiler(Integer id, LocalDate fechaFin){
-        
+    public Alquiler finalizarAlquiler(Integer id, LocalDate fechaFin) {
+        Alquiler alquiler = buscarPorId(id);
+        if(alquiler.isFinalizado()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El alquiler ya ha finalizado");
+        }
+        if(fechaFin.isBefore(alquiler.getFechaInicio())){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La fecha final no puede ser anterior a la inicial");
+        }
+        alquiler.setFechaFin(fechaFin);
+        return alquilerRepository.save(alquiler);
     }
 
 }
