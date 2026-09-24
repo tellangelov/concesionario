@@ -37,4 +37,8 @@ public class ClienteService {
         return clienteRepository.save(cliente);
     }
 
+    public void eliminarCliente(Integer id){
+        clienteRepository.delete(buscarPorId(id));
+    }
+
 }
