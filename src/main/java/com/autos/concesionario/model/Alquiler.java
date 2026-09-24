@@ -48,7 +48,7 @@ public class Alquiler {
         return fechaFin != null;
     }
 
-    /** Monto a cancelar en función de los días transcurridos (RF7). Devuelve null si no está finalizado. */
+    /** Monto a cancelar en función de los días transcurridos (RF7). */
     @Transient
     public BigDecimal calcularTotal() {
         if (fechaFin == null) {

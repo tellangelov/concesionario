@@ -8,7 +8,5 @@ import com.autos.concesionario.model.Vehiculo;
 @Repository
 public interface VehiculoRepository extends JpaRepository<Vehiculo, Integer> {
 
-    // Ejemplos de consultas derivadas:
-    // List<Vehiculo> findByCondicion(Vehiculo.Condicion condicion);
-    // List<Vehiculo> findByMarca(String marca);
+
 }

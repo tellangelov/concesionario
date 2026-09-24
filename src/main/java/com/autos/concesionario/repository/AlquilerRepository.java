@@ -8,8 +8,4 @@ import com.autos.concesionario.model.Alquiler;
 @Repository
 public interface AlquilerRepository extends JpaRepository<Alquiler, Integer> {
 
-    // Ejemplos de consultas derivadas:
-    // List<Alquiler> findByClienteId(Integer clienteId);
-    // List<Alquiler> findByVehiculoId(Integer vehiculoId);
-    // List<Alquiler> findByFechaFinIsNull(); // alquileres activos
 }

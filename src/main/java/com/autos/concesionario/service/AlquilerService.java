@@ -21,20 +21,4 @@ public class AlquilerService {
         this.vehiculoRepository = vehiculoRepository;
     }
 
-    // RF5: iniciar alquiler (validar que cliente y vehículo existen, fechaFin = null)
-    // public Alquiler alquilar(...) { ... }
-
-    // RF6: finalizar alquiler registrando la fecha de finalización
-    // public Alquiler finalizarAlquiler(Integer id, LocalDate fechaFin) { ... }
-
-    // RF7: el cálculo del monto vive en Alquiler.calcularTotal()
-
-    // RF8: listar alquileres
-    // public List<Alquiler> listarAlquileres() { ... }
-
-    // RF8: actualizar alquiler
-    // public Alquiler actualizarAlquiler(Integer id, ...) { ... }
-
-    // RF8: eliminar alquiler
-    // public void eliminarAlquiler(Integer id) { ... }
 }
