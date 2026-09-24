@@ -1,21 +1,27 @@
-package com.concesionario.autos.service;
+package com.autos.concesionario.service;
 
-import com.concesionario.autos.entity.Vehiculo;
-import com.concesionario.autos.repository.VehiculoRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.autos.concesionario.repository.VehiculoRepository;
 
 @Service
 public class VehiculoService {
 
-    private final VehiculoRepository repository;
+    private final VehiculoRepository vehiculoRepository;
 
-    public VehiculoService(VehiculoRepository repository) {
-        this.repository = repository;
+    public VehiculoService(VehiculoRepository vehiculoRepository) {
+        this.vehiculoRepository = vehiculoRepository;
     }
 
-    // TODO (RF3): registrar vehiculo (estado inicial DISPONIBLE)
-    // TODO (RF4): listar (findByEstado(DISPONIBLE)), editar, eliminar vehiculo
-    // TODO (RF11): marcarVendido(vehiculo) -> cambia estado a VENDIDO (llamado desde VentaService)
+    // RF3: registrar vehículo
+    // public Vehiculo registrarVehiculo(Vehiculo vehiculo) { ... }
+
+    // RF4: listar vehículos
+    // public List<Vehiculo> listarVehiculos() { ... }
+
+    // RF4: actualizar vehículo
+    // public Vehiculo actualizarVehiculo(Integer id, Vehiculo datos) { ... }
+
+    // RF4: eliminar vehículo
+    // public void eliminarVehiculo(Integer id) { ... }
 }

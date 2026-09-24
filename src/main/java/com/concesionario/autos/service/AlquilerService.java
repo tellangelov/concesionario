@@ -1,27 +1,40 @@
-package com.concesionario.autos.service;
+package com.autos.concesionario.service;
 
-import com.concesionario.autos.repository.AlquilerRepository;
 import org.springframework.stereotype.Service;
+
+import com.autos.concesionario.repository.AlquilerRepository;
+import com.autos.concesionario.repository.ClienteRepository;
+import com.autos.concesionario.repository.VehiculoRepository;
 
 @Service
 public class AlquilerService {
 
-    private final AlquilerRepository repository;
-    private final ClienteService clienteService;
-    private final VehiculoService vehiculoService;
+    private final AlquilerRepository alquilerRepository;
+    private final ClienteRepository clienteRepository;
+    private final VehiculoRepository vehiculoRepository;
 
-    public AlquilerService(AlquilerRepository repository,
-                           ClienteService clienteService,
-                           VehiculoService vehiculoService) {
-        this.repository = repository;
-        this.clienteService = clienteService;
-        this.vehiculoService = vehiculoService;
+    public AlquilerService(AlquilerRepository alquilerRepository,
+                           ClienteRepository clienteRepository,
+                           VehiculoRepository vehiculoRepository) {
+        this.alquilerRepository = alquilerRepository;
+        this.clienteRepository = clienteRepository;
+        this.vehiculoRepository = vehiculoRepository;
     }
 
-    // TODO (RF5): iniciar alquiler: validar cliente existe, vehiculo existe y esta DISPONIBLE
-    //             -> crear Alquiler con fechaInicio y precioDia, fechaFin = null
-    // TODO (RF6): finalizar alquiler: setear fechaFin
-    // TODO (RF7): total se calcula con Alquiler.calcularTotal() (exponerlo en el DTO de respuesta)
-    // TODO (RF8): listar, editar, eliminar alquileres
-    // TODO (RF9): al listar, incluir Alquiler.calcularEstado() en el DTO
+    // RF5: iniciar alquiler (validar que cliente y vehículo existen, fechaFin = null)
+    // public Alquiler alquilar(...) { ... }
+
+    // RF6: finalizar alquiler registrando la fecha de finalización
+    // public Alquiler finalizarAlquiler(Integer id, LocalDate fechaFin) { ... }
+
+    // RF7: el cálculo del monto vive en Alquiler.calcularTotal()
+
+    // RF8: listar alquileres
+    // public List<Alquiler> listarAlquileres() { ... }
+
+    // RF8: actualizar alquiler
+    // public Alquiler actualizarAlquiler(Integer id, ...) { ... }
+
+    // RF8: eliminar alquiler
+    // public void eliminarAlquiler(Integer id) { ... }
 }

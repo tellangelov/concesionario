@@ -1,11 +1,14 @@
-package com.concesionario.autos.repository;
+package com.autos.concesionario.repository;
 
-import com.concesionario.autos.entity.Vehiculo;
 import org.springframework.data.jpa.repository.JpaRepository;
-import java.util.List;
+import org.springframework.stereotype.Repository;
 
+import com.autos.concesionario.model.Vehiculo;
+
+@Repository
 public interface VehiculoRepository extends JpaRepository<Vehiculo, Integer> {
 
-    // RF4: listar inventario (solo vehiculos no vendidos)
-    List<Vehiculo> findByEstado(Vehiculo.EstadoVehiculo estado);
+    // Ejemplos de consultas derivadas:
+    // List<Vehiculo> findByCondicion(Vehiculo.Condicion condicion);
+    // List<Vehiculo> findByMarca(String marca);
 }

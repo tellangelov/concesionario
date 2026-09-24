@@ -1,20 +1,27 @@
-package com.concesionario.autos.service;
+package com.autos.concesionario.service;
 
-import com.concesionario.autos.entity.Cliente;
-import com.concesionario.autos.repository.ClienteRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import com.autos.concesionario.repository.ClienteRepository;
 
 @Service
 public class ClienteService {
 
-    private final ClienteRepository repository;
+    private final ClienteRepository clienteRepository;
 
-    public ClienteService(ClienteRepository repository) {
-        this.repository = repository;
+    public ClienteService(ClienteRepository clienteRepository) {
+        this.clienteRepository = clienteRepository;
     }
 
-    // TODO (RF1): registrar cliente
-    // TODO (RF2): listar, editar, eliminar cliente
+    // RF1: registrar cliente
+    // public Cliente registrarCliente(Cliente cliente) { ... }
+
+    // RF2: listar clientes
+    // public List<Cliente> listarClientes() { ... }
+
+    // RF2: actualizar cliente
+    // public Cliente actualizarCliente(Integer id, Cliente datos) { ... }
+
+    // RF2: eliminar cliente
+    // public void eliminarCliente(Integer id) { ... }
 }

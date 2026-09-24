@@ -1,36 +1,93 @@
-package com.concesionario.autos.model;
+package com.autos.concesionario.model;
 
-import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "vehiculo")
 public class Vehiculo {
 
+    public enum Condicion {
+        nuevo, usado, retirado
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false, length = 50)
+    private String marca;
+
+    @Column(nullable = false, length = 50)
     private String modelo;
 
-    // Resultado de la correccion al diagrama: en lugar de eliminar el registro
-    // al vender (RF11), se marca el estado y se excluye del inventario.
     @Enumerated(EnumType.STRING)
-    private EstadoVehiculo estado; // DISPONIBLE, VENDIDO
+    @Column(nullable = false, columnDefinition = "ENUM('nuevo', 'usado', 'retirado')")
+    private Condicion condicion;
 
-    private String condicion;
-
+    @Column(name = "fecha_compra", nullable = false)
     private LocalDate fechaCompra;
 
+    @Column(name = "precio_compra", nullable = false, precision = 10, scale = 2)
     private BigDecimal precioCompra;
 
-    public enum EstadoVehiculo { DISPONIBLE, VENDIDO }
+    public Vehiculo() {
+    }
 
-    // TODO: getters y setters
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public Condicion getCondicion() {
+        return condicion;
+    }
+
+    public void setCondicion(Condicion condicion) {
+        this.condicion = condicion;
+    }
+
+    public LocalDate getFechaCompra() {
+        return fechaCompra;
+    }
+
+    public void setFechaCompra(LocalDate fechaCompra) {
+        this.fechaCompra = fechaCompra;
+    }
 
     public BigDecimal getPrecioCompra() {
         return precioCompra;
+    }
+
+    public void setPrecioCompra(BigDecimal precioCompra) {
+        this.precioCompra = precioCompra;
     }
 }
