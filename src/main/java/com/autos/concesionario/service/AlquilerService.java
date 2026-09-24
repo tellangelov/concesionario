@@ -1,10 +1,15 @@
 package com.autos.concesionario.service;
 
-import org.springframework.stereotype.Service;
+import java.time.LocalDate;
+import java.util.List;
 
-import com.autos.concesionario.repository.AlquilerRepository;
-import com.autos.concesionario.repository.ClienteRepository;
-import com.autos.concesionario.repository.VehiculoRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpStatusCodeException;
+import org.springframework.web.server.ResponseStatusException;
+
+import com.autos.concesionario.model.Alquiler;
+import com.autos.concesionario.repository.*;
 
 @Service
 public class AlquilerService {
@@ -20,5 +25,32 @@ public class AlquilerService {
         this.clienteRepository = clienteRepository;
         this.vehiculoRepository = vehiculoRepository;
     }
+
+    public Alquiler alquilar(Alquiler alquiler){
+        return alquilerRepository.save(alquiler);
+    }
+
+    public List<Alquiler> listarAlquileres(){
+        return alquilerRepository.findAll();
+    }
+
+    public Alquiler buscarPorId(Integer id){
+        return alquilerRepository.findById(id)
+                .orElseThrow(() -> new HttpStatusCodeException(HttpStatus.NOT_FOUND, "Alquiler no encontrado") {
+                });
+
+    }
+
+    public Alquiler actualizarAlquiler(Integer id, Alquiler data){
+        Alquiler alquiler = buscarPorId(id);
+        alquiler.setCliente(data.getCliente());
+        alquiler.setFechaFin(data.getFechaFin());
+        alquiler.setFechaInicio(data.getFechaInicio());
+        alquiler.setPrecioDia(data.getPrecioDia());
+        alquiler.setVehiculo(data.getVehiculo());
+        return alquilerRepository.save(alquiler);
+    }
+
+    public Alquiler finalizarAlquiler(Integer id, Date)
 
 }
