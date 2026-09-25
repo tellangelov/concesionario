@@ -71,4 +71,9 @@ public class AlquilerService {
         return alquilerRepository.save(alquiler);
     }
 
+    public void eliminarAlquiler(Integer id){
+        Alquiler alquiler = buscarPorId(id);
+        alquilerRepository.delete(alquiler);
+    }
+
 }
