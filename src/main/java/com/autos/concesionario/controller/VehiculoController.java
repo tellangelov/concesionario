@@ -1,8 +1,9 @@
 package com.autos.concesionario.controller;
 
 import java.util.List;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import com.autos.concesionario.model.Vehiculo;
 import com.autos.concesionario.service.VehiculoService;
 
@@ -16,19 +17,24 @@ public class VehiculoController {
         this.vehiculoService = vehiculoService;
     }
 
-    public Vehiculo registrar(Vehiculo vehiculo){
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Vehiculo registrar(@RequestBody Vehiculo vehiculo){
         return vehiculoService.registrarVehiculo(vehiculo);
     }
 
+    @GetMapping
     public List<Vehiculo> listar(){
         return vehiculoService.listarVehiculos();
     }
 
-    public Vehiculo actualizar(Integer id, Vehiculo vehiculo){
+    @PutMapping("/{id}")
+    public Vehiculo actualizar(@PathVariable Integer id, @RequestBody Vehiculo vehiculo){
         return vehiculoService.actualizarVehiculo(id, vehiculo);
     }
-    
-    public void eliminar(Integer id){
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Integer id){
         vehiculoService.eliminarVehiculo(id);
     }
 
