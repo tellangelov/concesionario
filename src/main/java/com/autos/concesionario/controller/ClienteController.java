@@ -1,7 +1,7 @@
 package com.autos.concesionario.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import com.autos.concesionario.service.ClienteService;
 
@@ -18,23 +18,24 @@ public class ClienteController {
         this.clienteService = clienteService;
     }
 
-    public Cliente registrar(Cliente cliente){
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Cliente registrar(@RequestBody Cliente cliente){
         return clienteService.registrarCliente(cliente);
     }
 
-    public List<Cliente> listarClientes(){
+    @GetMapping
+    public List<Cliente> listar(){
         return clienteService.listarCliente();
     }
 
-    public Cliente buscarPorId(Integer id){
-        return clienteService.buscarPorId(id);
-    }
-
-    public Cliente actualizarCliente(Integer id, Cliente data){
+    @PutMapping("/{id}")
+    public Cliente actualizar(@PathVariable Integer id, @RequestBody Cliente data){
         return clienteService.actualizarCliente(id, data);
     }
 
-    public void eliminarCliente(Integer id){
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Integer id){
         clienteService.eliminarCliente(id);
     }
 
