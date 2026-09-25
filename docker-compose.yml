@@ -1,0 +1,15 @@
+services:
+  concesionario:
+    build: .
+    container_name: concesionario-autos
+    ports:
+      - "8085:8080"
+    volumes:
+      - /home/angelo/services/bbva_autos/app:/app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://host.docker.internal:3306/spring?createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: 1234
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
